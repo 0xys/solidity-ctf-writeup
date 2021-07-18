@@ -14,9 +14,6 @@ const input = (findFileContent: any): any => {
             'public/Hello.sol': {
                 content: findFileContent('public/Hello.sol')
             },
-            'public/Test.sol': {
-                content: findFileContent('public/Test.sol')
-            },
     
             //  private/<FILE_NAME>.sol
             'private/Exploit.sol': {
