@@ -7,10 +7,10 @@ export class SolCompiler  {
 
     }
 
-    compile = async (input: any): Promise<{success: boolean, product?: any}> => {
+    compile = async (input: any): Promise<{success: boolean, output?: any}> => {
         const compiler = await this.loadCompileVersion(this.version);
         const output = JSON.parse(
-            compiler.compile(JSON.stringify(input), { import: this.findFileContent })
+            compiler.compile(JSON.stringify(input(this.findFileContent)), { import: this.findFileContent })
         );
         if(output.errors.length > 0){
             var error = false;
@@ -23,7 +23,7 @@ export class SolCompiler  {
             if(error) return {success: false};
         }
 
-        return output;
+        return {success: true, output};
     }
 
     private loadCompileVersion = (version: string): Promise<any> => {
@@ -36,7 +36,7 @@ export class SolCompiler  {
     }
 
     private pather = (filepath: string): string => {
-        return path.join(__dirname, `../../../problems/${this.problemName}/`, filepath)
+        return path.join(__dirname, `../../problems/${this.problemName}/`, filepath)
     }
     
     private findFileContent = (filepath: string): string => {
