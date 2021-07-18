@@ -1,7 +1,8 @@
 import { SolCompiler } from '../../../lib/compiler';
 import { Sender } from '../../../lib/sender';
-
 import setting from '../setting.json';
+
+const abi = require('ethereumjs-abi');
 
 const input = (findFileContent: any): any => {
     return {
@@ -14,10 +15,7 @@ const input = (findFileContent: any): any => {
             'public/Hello.sol': {
                 content: findFileContent('public/Hello.sol')
             },
-            'public/Test.sol': {
-                content: findFileContent('public/Test.sol')
-            },
-    
+
             //  private/<FILE_NAME>.sol
             'private/Exploit.sol': {
                 content: findFileContent('private/Exploit.sol')
@@ -33,24 +31,26 @@ const input = (findFileContent: any): any => {
     }
 }
 
-
 /**
  * 
- * @param deployer 
+ * @param exploiter 
  * @param version 
+ * @param setupAddress 
  * @param valueEth 
- * @returns address of Setup contract
+ * @returns true if solved, false otherwise.
  */
-export const deploy = async (deployer: Sender, valueEth: number = 0): Promise<string> => {
+export const solve = async (exploiter: Sender, setupAddress: string, valueEth: number = 0): Promise<boolean> => {
     const compiler = new SolCompiler(setting.solc.version, setting.problem.name);
     const {success, output} = await compiler.compile(input);
     if(!success){
         console.log('fail compilation');
-        return 'fail';
+        return false;
     }
+    const bytecode = output['contracts']['private/Exploit.sol']['Exploit'].evm.bytecode.object;
+    const contractAddress = await exploiter.deployContract(bytecode+'000000000000000000000000'+setupAddress.slice(2), valueEth);
+    console.log('private/Exploit.sol', contractAddress);
 
-    const bytecode = output['contracts']['public/Setup.sol']['Setup'].evm.bytecode.object;
-    const contractAddress = await deployer.deployContract(bytecode, 0);
-    console.log('public/Setup.sol', contractAddress);
-    return contractAddress;
+    const data = abi.simpleEncode('isSolved()');
+    const res = await exploiter.viewContract(setupAddress, data)
+    return res === '0x0000000000000000000000000000000000000000000000000000000000000001';
 }

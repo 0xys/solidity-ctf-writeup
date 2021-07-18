@@ -18,8 +18,8 @@ export class SolCompiler  {
                 if(e.severity == 'error'){
                     error = true;
                 }
+                if(e.errorCode != '1878') console.log(e);
             });
-            console.log(output.errors);
             if(error) return {success: false};
         }
 
@@ -42,13 +42,4 @@ export class SolCompiler  {
     private findFileContent = (filepath: string): string => {
         return fs.readFileSync(this.pather(filepath)).toString();
     }
-}
-
-export const loadCompileVersion = (version: string): Promise<any> => {
-    return new Promise((resolve, reject) => {
-        solc.loadRemoteVersion(version, (err: any, compiler: any) => {
-            if(err) reject(err);
-            resolve(compiler);
-        })
-    });
 }
