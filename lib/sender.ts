@@ -1,6 +1,6 @@
 import Web3 from 'web3';
 import axios from 'axios';
-import { Unit} from 'web3-utils';
+import { Unit } from 'web3-utils';
 import Common from "@ethereumjs/common";
 import { Transaction, TxData } from "@ethereumjs/tx";
 import Wallet, { hdkey } from 'ethereumjs-wallet';
@@ -60,13 +60,13 @@ export class Sender {
         return receipt;
     }
 
-    deployContract = async (bytecode: string, valueETH: number): Promise<string> => {
+    deployContract = async (bytecode: string, value: {value: string, unit?: string} = {value: '0'}): Promise<string> => {
         const nonce = await this.web3.eth.getTransactionCount(this.wallet.getChecksumAddressString());
         const txData = {
             from: this.wallet.getAddressString(),
             gasLimit: this.web3.utils.toHex('12500000'),
             gasPrice: this.web3.utils.toHex(this.web3.utils.toWei('1', 'gwei')),
-            value: this.web3.utils.toHex(this.web3.utils.toWei(valueETH.toString(), 'ether')),
+            value: this.web3.utils.toHex(this.web3.utils.toWei(value.value, toUnit(value.unit))),
             nonce: this.web3.utils.toHex(nonce),
             data: `0x${bytecode.toString()}`
         };
@@ -75,13 +75,13 @@ export class Sender {
         return receipt.contractAddress;
     }
 
-    callContract = async (contractAddress: string, data: Buffer, valueETH: number = 0): Promise<any> => {
+    callContract = async (contractAddress: string, data: Buffer, value: {value: string, unit?: string} = {value: '0'}): Promise<any> => {
         const nonce = await this.web3.eth.getTransactionCount(this.wallet.getChecksumAddressString());
         const txData = {
             from: this.wallet.getAddressString(),
             gasLimit: this.web3.utils.toHex('12500000'),
             gasPrice: this.web3.utils.toHex(this.web3.utils.toWei('1', 'gwei')),
-            value: this.web3.utils.toHex(this.web3.utils.toWei(valueETH.toString(), 'ether')),
+            value: this.web3.utils.toHex(this.web3.utils.toWei(value.value, toUnit(value.unit))),
             to: contractAddress,
             nonce: this.web3.utils.toHex(nonce),
             data: `0x${data.toString('hex')}`
@@ -111,5 +111,19 @@ export class Sender {
             params: [txHash, {}]
         });
         return res.data;
+    }
+}
+
+const toUnit = (unit?: string): Unit => {
+    switch(unit){
+        case 'wei':
+            return 'wei';
+        case 'gwei':
+            return 'gwei';
+        case 'ether':
+            return 'ether';
+        default:
+            console.log('default unit is ether');
+            return 'ether';
     }
 }

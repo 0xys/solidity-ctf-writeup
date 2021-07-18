@@ -47,7 +47,7 @@ export const solve = async (exploiter: Sender, setupAddress: string, valueEth: n
         return false;
     }
     const bytecode = output['contracts']['private/Exploit.sol']['Exploit'].evm.bytecode.object;
-    const contractAddress = await exploiter.deployContract(bytecode+'000000000000000000000000'+setupAddress.slice(2), valueEth);
+    const contractAddress = await exploiter.deployContract(bytecode+'000000000000000000000000'+setupAddress.slice(2));
     console.log('private/Exploit.sol', contractAddress);
 
     const data = abi.simpleEncode('isSolved()');

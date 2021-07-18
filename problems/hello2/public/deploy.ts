@@ -38,7 +38,7 @@ const input = (findFileContent: any): any => {
  * @param valueEth 
  * @returns address of Setup contract
  */
-export const deploy = async (deployer: Sender, valueEth: number = 0): Promise<string> => {
+export const deploy = async (deployer: Sender): Promise<string> => {
     const compiler = new SolCompiler(setting.solc.version, setting.problem.name);
     const {success, output} = await compiler.compile(input);
     if(!success){
@@ -47,7 +47,7 @@ export const deploy = async (deployer: Sender, valueEth: number = 0): Promise<st
     }
 
     const bytecode = output['contracts']['public/Setup.sol']['Setup'].evm.bytecode.object;
-    const contractAddress = await deployer.deployContract(bytecode, 0);
+    const contractAddress = await deployer.deployContract(bytecode, setting.problem.deploy_value);
     console.log('public/Setup.sol', contractAddress);
     return contractAddress;
 }
