@@ -9,11 +9,9 @@ contract Hello {
         _genesis = block.number;
     }
 
-    event Say(uint id);
     event SayHello(address from, uint count);
 
     function solve() public {
-        emit Say(_genesis);
         require(block.number > (_genesis+1), "must wait");
         solved = true;
     }
