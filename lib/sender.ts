@@ -71,7 +71,7 @@ export class Sender {
             data: `0x${bytecode.toString()}`
         };
         const receipt = await this.send(txData);
-        console.log('deployment receipt:', JSON.stringify(receipt));
+        console.log('Deployment Receipt:', receipt);
         return receipt.contractAddress;
     }
 
