@@ -1,0 +1,27 @@
+{
+  "name": "paradigm-ctf-2021-ganache",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "tsc && node ./dist/test.js",
+    "start": "tsc && node ./dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ethereumjs/common": "^2.4.0",
+    "@ethereumjs/tx": "^3.3.0",
+    "@types/bip39": "^3.0.0",
+    "axios": "^0.21.1",
+    "bip39": "^3.0.4",
+    "ethereumjs-abi": "^0.6.8",
+    "ethereumjs-wallet": "^1.0.1",
+    "solc": "^0.8.6",
+    "web3": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.20.16"
+  }
+}
