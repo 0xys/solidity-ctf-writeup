@@ -9,13 +9,15 @@ const web3 = new Web3(endpoint);
 const mnemonic = config.mnemonic;
 const common = new Common({ chain: 'mainnet', hardfork: 'berlin' });
 
-import { deploy } from './problems/hello3/public/deploy';
-import { solve } from './problems/hello3/private/solve';
+import { deploy } from './problems/bouncer/public/deploy';
+import { solve } from './problems/bouncer/private/solve';
 
 (async () => {
     try{
         const deployer = new Sender(web3, endpoint, mnemonic, 0, common);
         const setupAddress = await deploy(deployer);
+
+        console.log('');
 
         const exploiter = new Sender(web3, endpoint, mnemonic, 1, common);
         const result = await solve(exploiter, setupAddress);

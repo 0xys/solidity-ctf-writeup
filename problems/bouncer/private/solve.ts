@@ -47,7 +47,7 @@ export const solve = async (exploiter: Sender, setupAddress: string): Promise<bo
     const bytecode = output['contracts']['private/Exploit.sol']['Exploit'].evm.bytecode.object;
     const exploitContractAddress = 
         await exploiter.deployContract(bytecode+'000000000000000000000000'+setupAddress.slice(2), {
-            value: '2',
+            value: '100',
             unit: 'ether'
         });
     console.log('private/Exploit.sol', exploitContractAddress);
@@ -58,7 +58,7 @@ export const solve = async (exploiter: Sender, setupAddress: string): Promise<bo
     }
 
     const calldata = abi.simpleEncode('exploit()');
-    const receipt = await exploiter.callContract(exploitContractAddress, calldata, {value: '100', unit: 'ether'});
+    const receipt = await exploiter.callContract(exploitContractAddress, calldata, {value: '50', unit: 'ether'});
     console.log('call exploit() receipt:', receipt);
     
     {
