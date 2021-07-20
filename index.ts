@@ -9,8 +9,8 @@ const web3 = new Web3(endpoint);
 const mnemonic = config.mnemonic;
 const common = new Common({ chain: 'mainnet', hardfork: 'berlin' });
 
-import { deploy } from './problems/bouncer/public/deploy';
-import { solve } from './problems/bouncer/private/solve';
+import { deploy } from './problems/broker/public/deploy';
+import { solve } from './problems/broker/private/solve';
 
 (async () => {
     try{
