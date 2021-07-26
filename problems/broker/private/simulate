@@ -1,0 +1,183 @@
+ -- Reserve --
+500000 TOKEN
+25 WETH
+TOKEN/WETH rate: 20000.0
+ -- Debt status --
+deposited: 25 WETH
+borrowed: 250000 TOKEN
+Safe Debt: 333333.3333333334 TOKEN
+0 WETH sold
+ - 0.0 TOKEN received
+ - Safe Debt: 333333.3333333333 TOKEN
+ - Undercolateralized: -83333.33333333331 TOKEN
+ - liquidate with: 0.0 TOKEN
+ - in return of: 0.0 WETH
+ - remaining deposit: 25.0 WETH
+1 WETH sold
+ - 19175.289456475748 TOKEN received
+ - Safe Debt: 320512.8205128205 TOKEN
+ - Undercolateralized: -70512.8205128205 TOKEN
+ - liquidate with: 19175.289456475748 TOKEN
+ - in return of: 1.03688 WETH
+ - remaining deposit: 23.96312 WETH
+2 WETH sold
+ - 36934.13351115063 TOKEN received
+ - Safe Debt: 308641.97530864197 TOKEN
+ - Undercolateralized: -58641.975308641966 TOKEN
+ - liquidate with: 36934.13351115063 TOKEN
+ - in return of: 2.15352 WETH
+ - remaining deposit: 22.84648 WETH
+3 WETH sold
+ - 53427.887535279195 TOKEN received
+ - Safe Debt: 297619.04761904763 TOKEN
+ - Undercolateralized: -47619.04761904763 TOKEN
+ - liquidate with: 53427.887535279195 TOKEN
+ - in return of: 3.34992 WETH
+ - remaining deposit: 21.65008 WETH
+4 WETH sold
+ - 68787.08431074927 TOKEN received
+ - Safe Debt: 287356.3218390805 TOKEN
+ - Undercolateralized: -37356.32183908048 TOKEN
+ - liquidate with: 68787.08431074927 TOKEN
+ - in return of: 4.62608 WETH
+ - remaining deposit: 20.37392 WETH
+5 WETH sold
+ - 83124.89578122394 TOKEN received
+ - Safe Debt: 277777.7777777778 TOKEN
+ - Undercolateralized: -27777.77777777781 TOKEN
+ - liquidate with: 83124.89578122394 TOKEN
+ - in return of: 5.982 WETH
+ - remaining deposit: 19.018 WETH
+6 WETH sold
+ - 96539.92640888257 TOKEN received
+ - Safe Debt: 268817.20430107525 TOKEN
+ - Undercolateralized: -18817.204301075253 TOKEN
+ - liquidate with: 96539.92640888257 TOKEN
+ - in return of: 7.41768 WETH
+ - remaining deposit: 17.58232 WETH
+7 WETH sold
+ - 109118.48400512837 TOKEN received
+ - Safe Debt: 260416.66666666666 TOKEN
+ - Undercolateralized: -10416.666666666657 TOKEN
+ - liquidate with: 109118.48400512837 TOKEN
+ - in return of: 8.93312 WETH
+ - remaining deposit: 16.066879999999998 WETH
+8 WETH sold
+ - 120936.43862202814 TOKEN received
+ - Safe Debt: 252525.25252525252 TOKEN
+ - Undercolateralized: -2525.252525252523 TOKEN
+ - liquidate with: 120936.43862202814 TOKEN
+ - in return of: 10.52832 WETH
+ - remaining deposit: 14.47168 WETH
+9 WETH sold
+ - 132060.75412827835 TOKEN received
+ - Safe Debt: 245098.03921568627 TOKEN
+ - Undercolateralized: 4901.960784313735 TOKEN
+ - liquidate with: 132060.75412827835 TOKEN
+ - in return of: 12.203280000000001 WETH
+ - remaining deposit: 12.796719999999999 WETH
+10 WETH sold
+ - 142550.75779239347 TOKEN received
+ - Safe Debt: 238095.2380952381 TOKEN
+ - Undercolateralized: 11904.761904761894 TOKEN
+ - liquidate with: 142550.75779239347 TOKEN
+ - in return of: 13.957999999999997 WETH
+ - remaining deposit: 11.042000000000003 WETH
+11 WETH sold
+ - 152459.19870992855 TOKEN received
+ - Safe Debt: 231481.4814814815 TOKEN
+ - Undercolateralized: 18518.51851851851 TOKEN
+ - liquidate with: 152459.19870992855 TOKEN
+ - in return of: 15.79248 WETH
+ - remaining deposit: 9.20752 WETH
+12 WETH sold
+ - 161833.13494210583 TOKEN received
+ - Safe Debt: 225225.2252252252 TOKEN
+ - Undercolateralized: 24774.774774774793 TOKEN
+ - liquidate with: 161833.13494210583 TOKEN
+ - in return of: 17.70672 WETH
+ - remaining deposit: 7.293279999999999 WETH
+13 WETH sold
+ - 170714.68085666868 TOKEN received
+ - Safe Debt: 219298.24561403508 TOKEN
+ - Undercolateralized: 30701.754385964916 TOKEN
+ - liquidate with: 170714.68085666868 TOKEN
+ - in return of: 19.70072 WETH
+ - remaining deposit: 5.2992799999999995 WETH
+14 WETH sold
+ - 179141.6397145644 TOKEN received
+ - Safe Debt: 213675.21367521366 TOKEN
+ - Undercolateralized: 36324.78632478634 TOKEN
+ - liquidate with: 179141.6397145644 TOKEN
+ - in return of: 21.774480000000004 WETH
+ - remaining deposit: 3.225519999999996 WETH
+15 WETH sold
+ - 187148.04154674007 TOKEN received
+ - Safe Debt: 208333.33333333334 TOKEN
+ - Undercolateralized: 41666.66666666666 TOKEN
+ - liquidate with: 187148.04154674007 TOKEN
+ - in return of: 23.928 WETH
+ - remaining deposit: 1.0719999999999992 WETH
+16 WETH sold
+ - 194764.60246141825 TOKEN received
+ - Safe Debt: 203252.03252032519 TOKEN
+ - Undercolateralized: 46747.967479674815 TOKEN
+ - liquidate with: 194764.60246141825 TOKEN
+ - in return of: 26.16128 WETH
+ - remaining deposit: -1.1612800000000014 WETH
+17 WETH sold
+ - 202019.11845336005 TOKEN received
+ - Safe Debt: 198412.69841269843 TOKEN
+ - Undercolateralized: 51587.30158730157 TOKEN
+ - liquidate with: 202019.11845336005 TOKEN
+ - in return of: 28.474320000000002 WETH
+ - remaining deposit: -3.4743200000000023 WETH
+18 WETH sold
+ - 208936.80435896243 TOKEN received
+ - Safe Debt: 193798.44961240308 TOKEN
+ - Undercolateralized: 56201.550387596915 TOKEN
+ - liquidate with: 208936.80435896243 TOKEN
+ - in return of: 30.867120000000007 WETH
+ - remaining deposit: -5.867120000000007 WETH
+19 WETH sold
+ - 215540.58666909405 TOKEN received
+ - Safe Debt: 189393.93939393942 TOKEN
+ - Undercolateralized: 60606.06060606058 TOKEN
+ - liquidate with: 215540.58666909405 TOKEN
+ - in return of: 33.33968 WETH
+ - remaining deposit: -8.339680000000001 WETH
+20 WETH sold
+ - 221851.35736537605 TOKEN received
+ - Safe Debt: 185185.18518518517 TOKEN
+ - Undercolateralized: 64814.81481481483 TOKEN
+ - liquidate with: 221851.35736537605 TOKEN
+ - in return of: 35.892 WETH
+ - remaining deposit: -10.892000000000003 WETH
+21 WETH sold
+ - 227888.19470143892 TOKEN received
+ - Safe Debt: 181159.42028985507 TOKEN
+ - Undercolateralized: 68840.57971014493 TOKEN
+ - liquidate with: 227888.19470143892 TOKEN
+ - in return of: 38.52408 WETH
+ - remaining deposit: -13.524079999999998 WETH
+22 WETH sold
+ - 233668.5558443772 TOKEN received
+ - Safe Debt: 177304.96453900708 TOKEN
+ - Undercolateralized: 72695.03546099292 TOKEN
+ - liquidate with: 233668.5558443772 TOKEN
+ - in return of: 41.23592 WETH
+ - remaining deposit: -16.23592 WETH
+23 WETH sold
+ - 239208.44547370178 TOKEN received
+ - Safe Debt: 173611.1111111111 TOKEN
+ - Undercolateralized: 76388.8888888889 TOKEN
+ - liquidate with: 239208.44547370178 TOKEN
+ - in return of: 44.027519999999996 WETH
+ - remaining deposit: -19.027519999999996 WETH
+24 WETH sold
+ - 244522.5637671681 TOKEN received
+ - Safe Debt: 170068.02721088435 TOKEN
+ - Undercolateralized: 79931.97278911565 TOKEN
+ - liquidate with: 244522.5637671681 TOKEN
+ - in return of: 46.898880000000005 WETH
+ - remaining deposit: -21.898880000000005 WETH
