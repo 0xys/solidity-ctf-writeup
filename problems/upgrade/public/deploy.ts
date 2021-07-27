@@ -1,7 +1,5 @@
-import { BADNAME } from 'dns';
 import { SolCompiler } from '../../../lib/compiler';
 import { Sender } from '../../../lib/sender';
-import BN from 'bn.js';
 
 const abi = require('ethereumjs-abi');
 import setting from '../setting.json';
@@ -67,7 +65,7 @@ export const deploy = async (deployer: Sender): Promise<string> => {
         console.log('call changeAdmin():', receipt);
         console.log('');
     }
-    
+
     /* call Setup.upgrade() method */
     {
         const data = abi.simpleEncode('upgrade()');
