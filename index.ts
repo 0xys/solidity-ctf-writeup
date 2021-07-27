@@ -19,10 +19,10 @@ import { solve } from './problems/upgrade/private/solve';
 
         console.log('');
 
-        const exploiter = new Sender(web3, endpoint, mnemonic, 1, common);
-        const result = await solve(exploiter, setupAddress);
+        // const exploiter = new Sender(web3, endpoint, mnemonic, 1, common);
+        // const result = await solve(exploiter, setupAddress);
 
-        console.log('solved:', result);
+        // console.log('solved:', result);
     }catch(e){
         console.log(e);
     }    
