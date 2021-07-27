@@ -2,7 +2,7 @@
     "problem": {
         "name": "upgrade",
         "deploy_value": {
-            "value": "50",
+            "value": "0",
             "unit": "ether"
         }
     },
