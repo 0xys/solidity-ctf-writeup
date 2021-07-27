@@ -5,6 +5,7 @@ import Common from "@ethereumjs/common";
 import { Transaction, TxData } from "@ethereumjs/tx";
 import Wallet, { hdkey } from 'ethereumjs-wallet';
 import BN from 'bn.js';
+import assert from 'assert';
 const bip39  = require('bip39');
 
 export class Sender {
@@ -22,6 +23,40 @@ export class Sender {
     balance = async(unit: Unit): Promise<string> => {
         const wei = await this.web3.eth.getBalance(this.wallet.getAddressString());
         return this.web3.utils.fromWei(wei, unit);
+    }
+
+    sendFromUnknown = async (from: string, txData: TxData): Promise<any> => {
+        const unlock = await axios.post(this.endpoint, {
+            jsonrpc: '2.0',
+            method: 'evm_unlockUnknownAccount',
+            params: [from]
+        });
+        assert(unlock.data.result == true, `unlocking ${from} failed`);
+
+        const tx = Transaction.fromTxData(txData, { common: this.common });
+        
+        const resHash = await axios.post(this.endpoint, {
+            jsonrpc: '2.0',
+            method: 'eth_sendTransaction',
+            params: [{
+                from: from,
+                to: tx.to?.toString(),
+                gasLimit: this.web3.utils.numberToHex(tx.gasLimit),
+                gasPrice: this.web3.utils.numberToHex(tx.gasPrice),
+                value: this.web3.utils.numberToHex(tx.value),
+                data: `0x${tx.data.toString('hex')}`
+            }]
+        });
+
+        console.log('sent:', resHash.data);
+
+        const resReceipt = await axios.post(this.endpoint, {
+            jsonrpc: '2.0',
+            method: 'eth_getTransactionReceipt',
+            params: [resHash.data.result]
+        });
+        const receipt = resReceipt.data.result;
+        return receipt;
     }
 
     send = async (txData: TxData): Promise<any> => {
@@ -51,12 +86,27 @@ export class Sender {
         const nonce = await this.web3.eth.getTransactionCount(this.wallet.getChecksumAddressString());
         const txData = {
             from: this.wallet.getAddressString(),
+            to: to,
             gasLimit: this.web3.utils.toHex('80000'),
             gasPrice: this.web3.utils.toHex(this.web3.utils.toWei('0', 'gwei')),
             value: this.web3.utils.toHex(value),
             nonce: this.web3.utils.toHex(nonce),
         };
         const receipt = await this.send(txData);
+        return receipt;
+    }
+
+    transferFromUnknown = async (from: string, to: string, value: BN): Promise<any> => {
+        const nonce = await this.web3.eth.getTransactionCount(this.wallet.getChecksumAddressString());
+        const txData = {
+            from: from,
+            to: to,
+            gasLimit: this.web3.utils.toHex('80000'),
+            gasPrice: this.web3.utils.toHex(this.web3.utils.toWei('0', 'gwei')),
+            value: this.web3.utils.toHex(value),
+            nonce: this.web3.utils.toHex(nonce),
+        };
+        const receipt = await this.sendFromUnknown(from, txData);
         return receipt;
     }
 
@@ -87,6 +137,21 @@ export class Sender {
             data: `0x${data.toString('hex')}`
         };
         const receipt = await this.send(txData);
+        return receipt;
+    }
+
+    callContractFromUnknown = async (from: string, contractAddress: string, data: Buffer, value: {value: string, unit?: string} = {value: '0'}): Promise<any> => {
+        const nonce = await this.web3.eth.getTransactionCount(this.wallet.getChecksumAddressString());
+        const txData = {
+            from: from,
+            gasLimit: this.web3.utils.toHex('12500000'),
+            gasPrice: this.web3.utils.toHex(this.web3.utils.toWei('1', 'gwei')),
+            value: this.web3.utils.toHex(this.web3.utils.toWei(value.value, toUnit(value.unit))),
+            to: contractAddress,
+            nonce: this.web3.utils.toHex(nonce),
+            data: `0x${data.toString('hex')}`
+        };
+        const receipt = await this.sendFromUnknown(from, txData);
         return receipt;
     }
 
