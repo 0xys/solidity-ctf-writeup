@@ -20,8 +20,13 @@ export class Sender {
         return await this.web3.eth.getChainId();
     }
 
-    balance = async(unit: Unit): Promise<string> => {
+    balance = async(unit: Unit = 'wei'): Promise<string> => {
         const wei = await this.web3.eth.getBalance(this.wallet.getAddressString());
+        return this.web3.utils.fromWei(wei, unit);
+    }
+
+    getBalance = async(address: string, unit: Unit = 'wei'): Promise<string> => {
+        const wei = await this.web3.eth.getBalance(address);
         return this.web3.utils.fromWei(wei, unit);
     }
 
@@ -177,6 +182,10 @@ export class Sender {
         });
         return res.data;
     }
+
+    getStorageAt = async (address: string, slot: BN): Promise<string> => {
+        return await this.web3.eth.getStorageAt(address, slot);
+    }
 }
 
 const toUnit = (unit?: string): Unit => {
@@ -185,6 +194,8 @@ const toUnit = (unit?: string): Unit => {
             return 'wei';
         case 'gwei':
             return 'gwei';
+        case 'finney':
+            return 'finney';
         case 'ether':
             return 'ether';
         default:

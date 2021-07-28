@@ -1,0 +1,12 @@
+{
+    "problem": {
+        "name": "helloProxy",
+        "deploy_value": {
+            "value": "0",
+            "unit": "ether"
+        }
+    },
+    "solc": {
+        "version": "v0.4.23+commit.124ca40d"
+    }
+}

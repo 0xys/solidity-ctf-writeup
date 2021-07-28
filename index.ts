@@ -9,8 +9,8 @@ const web3 = new Web3(endpoint);
 const mnemonic = config.mnemonic;
 const common = new Common({ chain: 'mainnet', hardfork: 'berlin' });
 
-import { deploy } from './problems/upgrade/public/deploy';
-import { solve } from './problems/upgrade/private/solve';
+import { deploy } from './problems/helloProxy/public/deploy';
+import { solve } from './problems/helloProxy/private/solve';
 
 (async () => {
     try{
@@ -19,10 +19,10 @@ import { solve } from './problems/upgrade/private/solve';
 
         console.log('');
 
-        // const exploiter = new Sender(web3, endpoint, mnemonic, 1, common);
-        // const result = await solve(exploiter, setupAddress);
+        const exploiter = new Sender(web3, endpoint, mnemonic, 1, common);
+        const result = await solve(exploiter, setupAddress);
 
-        // console.log('solved:', result);
+        console.log('solved:', result);
     }catch(e){
         console.log(e);
     }    

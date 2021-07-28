@@ -3,3 +3,4 @@ dist
 *.secret.*
 README.md
 package-lock.json
+test.ts
