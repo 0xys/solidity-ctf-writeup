@@ -17,8 +17,23 @@ contract Setup {
 
     function upgrade() external {
         FiatTokenV3 v3 = new FiatTokenV3();
+
+        //  function initialize(
+        //      string memory tokenName,
+        //      string memory tokenSymbol,
+        //      string memory tokenCurrency,
+        //      uint8 tokenDecimals,
+        //      address newMasterMinter,
+        //      address newPauser,
+        //      address newBlacklister,
+        //      address newOwner
+        //  )
         v3.initialize("", "", "", 0, address(0x01), address(0x01), address(0x01), address(0x01));
+
+        //  function initializeV2(string calldata newName)
         v3.initializeV2("");
+
+        
         v3.initializeV3();
 
         USDC.upgradeTo(address(v3));
