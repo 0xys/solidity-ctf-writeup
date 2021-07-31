@@ -25,6 +25,11 @@ export class Sender {
         return this.web3.utils.fromWei(wei, unit);
     }
 
+    nonce = async(): Promise<string> => {
+        const nonce = await this.web3.eth.getTransactionCount(this.wallet.getAddressString());
+        return nonce.toString();
+    }
+
     getBalance = async(address: string, unit: Unit = 'wei'): Promise<string> => {
         const wei = await this.web3.eth.getBalance(address);
         return this.web3.utils.fromWei(wei, unit);
@@ -61,6 +66,14 @@ export class Sender {
             params: [resHash.data.result]
         });
         const receipt = resReceipt.data.result;
+
+        const lock = await axios.post(this.endpoint, {
+            jsonrpc: '2.0',
+            method: 'evm_lockUnknownAccount',
+            params: [from]
+        });
+        assert(lock.data.result == true, `re-locking ${from} failed`);
+
         return receipt;
     }
 
