@@ -1,0 +1,12 @@
+{
+    "problem": {
+        "name": "paradigm2021/secure",
+        "deploy_value": {
+            "value": "50",
+            "unit": "ether"
+        }
+    },
+    "solc": {
+        "version": "v0.5.12+commit.7709ece9"
+    }
+}

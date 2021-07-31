@@ -1,0 +1,12 @@
+{
+    "problem": {
+        "name": "paradigm2021/broker",
+        "deploy_value": {
+            "value": "50",
+            "unit": "ether"
+        }
+    },
+    "solc": {
+        "version": "v0.8.0+commit.c7dfd78e"
+    }
+}
