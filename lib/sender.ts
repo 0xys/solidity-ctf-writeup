@@ -212,7 +212,6 @@ const toUnit = (unit?: string): Unit => {
         case 'ether':
             return 'ether';
         default:
-            console.log('default unit is ether');
             return 'ether';
     }
 }
