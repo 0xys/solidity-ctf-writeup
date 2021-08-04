@@ -1,0 +1,9 @@
+{
+    "problem": {
+        "name": "hellos/helloAssembly",
+        "deploy_value": {
+            "value": "0",
+            "unit": "ether"
+        }
+    }
+}

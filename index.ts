@@ -9,8 +9,8 @@ const web3 = new Web3(endpoint);
 const mnemonic = config.mnemonic;
 const common = new Common({ chain: 'mainnet', hardfork: 'berlin' });
 
-import { deploy } from './problems/paradigm2021/upgrade/public/deploy';
-import { solve } from './problems/paradigm2021/upgrade/private/solve';
+import { deploy } from './problems/hellos/flashswap1/public/deploy';
+import { solve } from './problems/hellos/flashswap1/private/solve';
 
 (async () => {
     try{
@@ -19,8 +19,8 @@ import { solve } from './problems/paradigm2021/upgrade/private/solve';
 
         console.log('');
 
-        const exploiter = new Sender(web3, endpoint, mnemonic, 1, common);
-        const result = await solve(exploiter, setupAddress);
+        const solver = new Sender(web3, endpoint, mnemonic, 1, common);
+        const result = await solve(solver, setupAddress);
 
         console.log('solved:', result);
     }catch(e){
